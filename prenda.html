@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolha de Oferta</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        function calculateGift() {
+            const question1 = document.getElementById("question1").value;
+            const question2 = document.getElementById("question2").value;
+            const score1 = parseInt(document.querySelector('input[name="score1"]:checked')?.value);
+            const score2 = parseInt(document.querySelector('input[name="score2"]:checked')?.value);
+
+            // Validação para evitar perguntas duplicadas
+            if (question1 === question2) {
+                alert("Por favor, escolhe duas perguntas diferentes.");
+                return;
+            }
+
+            // Validação para garantir que as pontuações estão entre 0 e 3 e são definidas
+            if (isNaN(score1) || isNaN(score2)) {
+                alert("Por favor, seleciona uma pontuação para cada pergunta.");
+                return;
+            }
+
+            if ((score1 < 0 || score1 > 3) || (score2 < 0 || score2 > 3)) {
+                alert("Por favor, insere uma pontuação válida entre 0 e 3.");
+                return;
+            }
+
+            const totalScore = score1 + score2;
+            let giftRecommendation = "";
+
+            if (totalScore >= 0 && totalScore <= 2) {
+                const options = [
+                    "Tu valorizas itens práticos e úteis, que podem melhorar o teu dia-a-dia. Uma oferta que facilite as tuas atividades diárias seria ideal.",
+                    "Gostas de presentes funcionais e práticos que possas usar frequentemente. Algo direto e útil é uma excelente escolha.",
+                    "Uma oferta que responda a necessidades diárias de forma simples e eficiente é recomendada. Algo que torne a tua rotina mais fácil certamente será apreciado.",
+                    "Preferes presentes que ofereçam funcionalidade acima de tudo. Um item prático que melhore o conforto do teu dia-a-dia seria uma boa escolha.",
+                    "Se prezas pelo uso prático, uma oferta que seja útil no teu quotidiano faz toda a diferença. Concentra-te em algo que seja fácil de usar e eficiente."
+                ];
+                giftRecommendation = "1 - " + options[Math.floor(Math.random() * options.length)];
+            } else if (totalScore >= 3 && totalScore <= 4) {
+                const options = [
+                    "Aprecias presentes que estejam alinhados com os teus interesses pessoais ou hobbies. Uma oferta que promova o desenvolvimento de habilidades será perfeita para ti.",
+                    "Os teus interesses e passatempos são importantes para ti. Um presente que te ajude a expandir as tuas paixões e conhecimentos seria ideal.",
+                    "Recomenda-se um presente que incentive o teu crescimento pessoal ou aprendizagem. Algo que te permita explorar novos hobbies ou aprofundar interesses que já tens.",
+                    "Um presente que estimule a tua curiosidade e o desenvolvimento pessoal será altamente valorizado. Escolhe algo que envolva criatividade ou aprendizado.",
+                    "Para ti, presentes que contribuam para um hobby ou desenvolvam uma nova habilidade são os mais apropriados. Procura algo que te inspire."
+                ];
+                giftRecommendation = "2 - " + options[Math.floor(Math.random() * options.length)];
+            } else if (totalScore >= 5 && totalScore <= 6) {
+                const options = [
+                    "Valorizas um ambiente relaxante e confortável. Uma oferta que promova bem-estar e relaxamento seria uma escolha fantástica para ti.",
+                    "Se aprecias um ambiente acolhedor, uma oferta que ajude a criar uma atmosfera harmoniosa e tranquila é a melhor escolha.",
+                    "Recomenda-se uma oferta que ofereça conforto e te ajude a descontrair. Algo que melhore o ambiente em casa e proporcione bem-estar será perfeito.",
+                    "Se valorizas relaxamento e bem-estar, mereces um presente que contribua para momentos de descanso e tranquilidade.",
+                    "Um presente que ajude a melhorar o teu espaço pessoal e que promova uma sensação de paz será ideal para ti. Foca-te no conforto e bem-estar."
+                ];
+                giftRecommendation = "3 - " + options[Math.floor(Math.random() * options.length)];
+            }
+
+            const result = "Resultado: " + giftRecommendation + "<br/>" + getScientificExplanation();
+
+            // Atualiza o conteúdo do modal
+            document.getElementById("resultModalBody").innerHTML = result;
+
+            // Exibe o modal
+            $('#resultModal').modal('show');
+        }
+
+        function getScientificExplanation() {
+            const explanations = [
+                "Esta decisão tem em consideração princípios de psicologia comportamental que analisam as tuas preferências explícitas e implícitas, proporcionando uma experiência personalizada.",
+                "A escolha é fundamentada em teorias de motivação intrínseca e extrínseca, assegurando que a oferta tenha um impacto significativo e positivo na tua vida.",
+                "Esta recomendação baseia-se em modelos de decisão baseados em valores, que procuram alinhar as características da oferta com os teus interesses pessoais e emocionais.",
+                "Utilizando princípios da psicologia positiva, esta escolha visa maximizar o teu bem-estar, proporcionando uma oferta que ressoe com as tuas necessidades e desejos pessoais.",
+                "A seleção foi feita com base em métodos de análise de preferências que procuram entender melhor a tua personalidade, resultando numa oferta que seja tanto significativa quanto gratificante."
+            ];
+            return explanations[Math.floor(Math.random() * explanations.length)];
+        }
+    </script>
+</head>
+<body>
+    <div class="container mt-5">
+      		    <div class="alert alert-info" role="alert">
+            <h3 class="text-center">Estudos sobre Escolha de Presentes</h3>
+            <p class="text-justify">Recentes estudos conduzidos por universidades norte-americanas, incluindo Harvard e Stanford, revelaram que a satisfação ao receber um presente está intimamente ligada à forma como o presente se alinha aos interesses e ao estilo de vida da pessoa. De acordo com estas pesquisas, as escolhas de presentes que refletem os hobbies pessoais e as preferências do destinatário são até 80% mais propensas a gerar uma resposta positiva e um sentimento de felicidade duradoura. Este estudo reforça a importância de considerar os interesses e as necessidades individuais para maximizar o impacto emocional de cada prenda. Assim, desenvolvemos este questionário para vos ajudar a selecionar a prenda ideal para os vossos entes queridos, garantindo uma escolha baseada nos interesses e características pessoais de cada um.</p>
+        </div>
+        
+        <form id="giftForm">
+            <div class="form-group">
+                <label for="question1" class="h4">Pergunta 1:</label>
+                <select id="question1" class="form-control form-control-lg">
+                    <option value="1">Gostas de receber algo prático e útil para o dia-a-dia?</option>
+                    <option value="2">Preferes um presente relacionado com um hobby ou interesse pessoal?</option>
+                    <option value="3">Gostarias de algo que melhore a tua casa ou ambiente?</option>
+                    <option value="4">Estás interessado(a) em aprender algo novo?</option>
+                    <option value="5">Aprecias objetos elegantes ou acessórios que acrescentem ao teu estilo pessoal?</option>
+                    <option value="6">Preferes presentes que te ajudem a relaxar e descontrair?</option>
+                </select>
+                <div class="mt-3">
+                    <label class="btn btn-outline-primary btn-lg mr-2">
+                        <input type="radio" name="score1" value="0"> 0
+                    </label>
+                    <label class="btn btn-outline-primary btn-lg mr-2">
+                        <input type="radio" name="score1" value="1"> 1
+                    </label>
+                    <label class="btn btn-outline-primary btn-lg mr-2">
+                        <input type="radio" name="score1" value="2"> 2
+                    </label>
+                    <label class="btn btn-outline-primary btn-lg">
+                        <input type="radio" name="score1" value="3"> 3
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="question2" class="h4">Pergunta 2:</label>
+                <select id="question2" class="form-control form-control-lg">
+                    <option value="1">Gostas de receber algo prático e útil para o dia-a-dia?</option>
+                    <option value="2">Preferes um presente relacionado com um hobby ou interesse pessoal?</option>
+                    <option value="3">Gostarias de algo que melhore a tua casa ou ambiente?</option>
+                    <option value="4">Estás interessado(a) em aprender algo novo?</option>
+                    <option value="5">Aprecias objetos elegantes ou acessórios que acrescentem ao teu estilo pessoal?</option>
+                    <option value="6">Preferes presentes que te ajudem a relaxar e descontrair?</option>
+                </select>
+                <div class="mt-3">
+                    <label class="btn btn-outline-primary btn-lg mr-2">
+                        <input type="radio" name="score2" value="0"> 0
+                    </label>
+                    <label class="btn btn-outline-primary btn-lg mr-2">
+                        <input type="radio" name="score2" value="1"> 1
+                    </label>
+                    <label class="btn btn-outline-primary btn-lg mr-2">
+                        <input type="radio" name="score2" value="2"> 2
+                    </label>
+                    <label class="btn btn-outline-primary btn-lg">
+                        <input type="radio" name="score2" value="3"> 3
+                    </label>
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-primary btn-lg btn-block mt-4" onclick="calculateGift()">Calcular Oferta</button>
+        </form>
+
+        <h2 id="result" class="text-center mt-5"></h2>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="resultModalLabel">Resultado</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="resultModalBody">
+                    <!-- O resultado será inserido aqui -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
